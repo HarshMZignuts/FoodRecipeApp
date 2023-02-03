@@ -19,4 +19,6 @@ interface SimpleApi {
     suspend fun getQurryRecipe(
         @Query("query") query:String
     ): Response<RecipeResponse>
+    @GET("recipes/complexSearch?apiKey=da3197b4102241f8ae2fcc793d2fa878&query=icecream&number=20")
+    suspend fun getAllRecipe() : Response<RecipeResponse>
 }

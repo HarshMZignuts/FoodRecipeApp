@@ -21,4 +21,8 @@ class Repository @Inject constructor(
     {
         return api.getQurryRecipe(query)
     }
+    suspend fun getAllRecipe() : Response<RecipeResponse>
+    {
+        return api.getAllRecipe()
+    }
 }

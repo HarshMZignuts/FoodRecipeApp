@@ -15,6 +15,7 @@ import com.example.foodrecipeapp.R
 import com.example.foodrecipeapp.databinding.FragmentOverViewBinding
 import com.example.foodrecipeapp.databinding.GridLayoutBinding
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class OverViewFragment : Fragment() {
@@ -34,7 +35,7 @@ private val adapter = OverViewAdapter()
         binding = FragmentOverViewBinding.inflate(LayoutInflater.from(context))
         val view = binding.root
         setUPUi()
-        viewModel.getQurryRecipe2()
+        viewModel.getAllRecipe2()
        setUpObservers()
 
         return view
@@ -45,8 +46,14 @@ private val adapter = OverViewAdapter()
     }
     private fun setUpObservers(){
         viewModel.myResponce4.observe(viewLifecycleOwner, Observer {
-            it.results?.let {
-                adapter.setData(it.filterNotNull())
+            it.results?.let {recipe->
+                adapter.setData(recipe.filterNotNull())
+            }
+        })
+        viewModel.myResponce5.observe(viewLifecycleOwner, Observer {
+            it.results?.let {recipe->
+
+                adapter.setData(recipe.filterNotNull())
             }
         })
 

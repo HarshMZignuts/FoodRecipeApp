@@ -47,7 +47,8 @@ class OverViewAdapter : RecyclerView.Adapter<OverViewAdapter.MyViewHolder>() {
     fun setData(recipeResponse: List<Recipe?>){
         val diffUtil = DiffUtill(recipeList,recipeResponse)
         val diffResult = DiffUtil.calculateDiff(diffUtil)
-        recipeList = recipeResponse
+
+        recipeList=recipeResponse
         diffResult.dispatchUpdatesTo(this)
 
     }

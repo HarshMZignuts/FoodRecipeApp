@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.foodrecipeapp.R
 
 import com.example.foodrecipeapp.repository.Repository
 import com.example.foodrecipeapp.util.Recipe
@@ -22,7 +23,8 @@ constructor(
     private val repository:Repository,
     application: Application) : ViewModel(){
     val myResponce4: MutableLiveData<RecipeResponse> = MutableLiveData()
-
+    val myResponce5: MutableLiveData<RecipeResponse> = MutableLiveData()
+    private val mContext = application
     fun getQurryRecipe2(){
         viewModelScope.launch {
             viewModelScope.launch {
@@ -35,6 +37,22 @@ constructor(
 
             }
         }
+    }
+    fun getAllRecipe2(){
+
+            viewModelScope.launch {
+                val response5 : Response<RecipeResponse> = repository.getAllRecipe()
+                if (response5.isSuccessful){
+                    response5.body().let {
+                        myResponce5.value = it
+                    }
+                }
+                else{
+                    mContext.getString(R.string.no_internet)
+                }
+
+            }
+
     }
 
 }
