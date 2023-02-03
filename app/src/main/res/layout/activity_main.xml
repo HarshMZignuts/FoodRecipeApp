@@ -7,12 +7,10 @@
     tools:context=".MainActivity">
 
     <fragment
-        android:id="@+id/fragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
         android:name="androidx.navigation.fragment.NavHostFragment"
-        app:navGraph="@navigation/my_nav"
-        />
+        android:id="@+id/fragment"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        app:navGraph="@navigation/my_nav" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
