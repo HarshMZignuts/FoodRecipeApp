@@ -48,15 +48,23 @@ private val viewModel : DetailViewModel by viewModels()
                 it.body().let {
                     binding.detailViewModel = it
                     it?.nutrition?.nutrients?.forEach {
+                        var perv=it.amount!!*it.percentOfDailyNeeds!!/100
                         if(it.name == "Carbohydrates")
                         {
-                            binding.progressBar.progress = it.amount!!.toInt()
+                                Timber.e("Carbohydrates ${perv.toString()}",perv.toString())
+                            binding.progressBar.progress = perv.toInt()
                         }
                         else if (it.name == "Fat"){
-                            binding.progressBarFat.progress = it.amount!!.toInt()
+                            Timber.e("Fat ${perv.toString()}",perv.toString())
+                            binding.progressBarFat.progress = perv.toInt()
                         }
                         else if(it.name == "Protein"){
-                            binding.progressBarProtien.progress = it.amount!!.toInt()
+                            Timber.e("Protein ${perv.toString()}",perv.toString())
+                            binding.progressBarProtien.progress = perv.toInt()
+                        }
+                        else if(it.name == "Calories"){
+                            Timber.e("Calories ${perv.toString()}")
+                            binding.progressBarCal.progress = perv.toInt()
                         }
                     }
 

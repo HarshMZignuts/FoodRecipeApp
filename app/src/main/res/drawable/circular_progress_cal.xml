@@ -5,7 +5,7 @@
             android:thicknessRatio="7"
             android:useLevel="false"
             >
-            <solid android:color="#A1D194"/>
+            <solid android:color="#7096E3"/>
         </shape>
     </item>
     <item
@@ -15,13 +15,12 @@
             android:fromDegrees="0"
 
             >
-        <shape android:shape="ring"
-
-            android:thicknessRatio="7"
-            android:useLevel="true"
-            >
-            <solid android:color="#1B6F04"/>
-        </shape>
+            <shape android:shape="ring"
+                android:thicknessRatio="7"
+                android:useLevel="true"
+                >
+                <solid android:color="#003BB3"/>
+            </shape>
         </rotate>
     </item>
 </layer-list>
