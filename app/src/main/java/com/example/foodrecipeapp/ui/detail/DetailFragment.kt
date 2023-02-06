@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.foodrecipeapp.R
 import com.example.foodrecipeapp.databinding.FragmentDetailBinding
@@ -28,7 +29,7 @@ private val viewModel : DetailViewModel by viewModels()
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentDetailBinding.inflate(inflater,container,false)
-
+        
         setupUi()
         setUpObservers()
         return binding.root
@@ -38,7 +39,7 @@ private val viewModel : DetailViewModel by viewModels()
         args.id.let {
             Timber.e(it.toString())
           viewModel.getRecipe2(it)
-
+          
         }
     }
     private fun setUpObservers(){
@@ -46,6 +47,19 @@ private val viewModel : DetailViewModel by viewModels()
             it.let {
                 it.body().let {
                     binding.detailViewModel = it
+                    it?.nutrition?.nutrients?.forEach {
+                        if(it.name == "Carbohydrates")
+                        {
+                            binding.progressBar.progress = it.amount!!.toInt()
+                        }
+                        else if (it.name == "Fat"){
+                            binding.progressBarFat.progress = it.amount!!.toInt()
+                        }
+                        else if(it.name == "Protein"){
+                            binding.progressBarProtien.progress = it.amount!!.toInt()
+                        }
+                    }
+
                 }
             }
         })

@@ -6,7 +6,7 @@ data class Detail(
     @SerializedName("aggregateLikes")
     val aggregateLikes: Int?,
     @SerializedName("analyzedInstructions")
-    val analyzedInstructions: List<Any?>?,
+    val analyzedInstructions: List<Any>?,
     @SerializedName("cheap")
     val cheap: Boolean?,
     @SerializedName("cookingMinutes")
@@ -14,15 +14,15 @@ data class Detail(
     @SerializedName("creditsText")
     val creditsText: String?,
     @SerializedName("cuisines")
-    val cuisines: List<Any?>?,
+    val cuisines: List<Any>?,
     @SerializedName("dairyFree")
     val dairyFree: Boolean?,
     @SerializedName("diets")
-    val diets: List<Any?>?,
+    val diets: List<Any>?,
     @SerializedName("dishTypes")
-    val dishTypes: List<String?>?,
+    val dishTypes: List<String>?,
     @SerializedName("extendedIngredients")
-    val extendedIngredients: List<ExtendedIngredient?>?,
+    val extendedIngredients: List<ExtendedIngredient>?,
     @SerializedName("gaps")
     val gaps: String?,
     @SerializedName("glutenFree")
@@ -41,8 +41,10 @@ data class Detail(
     val license: String?,
     @SerializedName("lowFodmap")
     val lowFodmap: Boolean?,
+    @SerializedName("nutrition")
+    val nutrition: Nutrition?,
     @SerializedName("occasions")
-    val occasions: List<Any?>?,
+    val occasions: List<Any>?,
     @SerializedName("originalId")
     val originalId: Any?,
     @SerializedName("preparationMinutes")
@@ -78,6 +80,14 @@ data class Detail(
     @SerializedName("winePairing")
     val winePairing: WinePairing?
 )
+data class CaloricBreakdown(
+    @SerializedName("percentCarbs")
+    val percentCarbs: Double?,
+    @SerializedName("percentFat")
+    val percentFat: Double?,
+    @SerializedName("percentProtein")
+    val percentProtein: Double?
+)
 data class ExtendedIngredient(
     @SerializedName("aisle")
     val aisle: String?,
@@ -104,6 +114,26 @@ data class ExtendedIngredient(
     @SerializedName("unit")
     val unit: String?
 )
+data class Flavonoid(
+    @SerializedName("amount")
+    val amount: Double?,
+    @SerializedName("name")
+    val name: String?,
+    @SerializedName("unit")
+    val unit: String?
+)
+data class Ingredient(
+    @SerializedName("amount")
+    val amount: Double?,
+    @SerializedName("id")
+    val id: Int?,
+    @SerializedName("name")
+    val name: String?,
+    @SerializedName("nutrients")
+    val nutrients: List<NutrientX>?,
+    @SerializedName("unit")
+    val unit: String?
+)
 data class Measures(
     @SerializedName("metric")
     val metric: Metric?,
@@ -118,6 +148,38 @@ data class Metric(
     @SerializedName("unitShort")
     val unitShort: String?
 )
+data class NutrientX(
+    @SerializedName("amount")
+    val amount: Double?,
+    @SerializedName("name")
+    val name: String?,
+    @SerializedName("percentOfDailyNeeds")
+    val percentOfDailyNeeds: Double?,
+    @SerializedName("unit")
+    val unit: String?
+)
+data class Nutrition(
+    @SerializedName("caloricBreakdown")
+    val caloricBreakdown: CaloricBreakdown?,
+    @SerializedName("flavonoids")
+    val flavonoids: List<Flavonoid>?,
+    @SerializedName("ingredients")
+    val ingredients: List<Ingredient>?,
+    @SerializedName("nutrients")
+    val nutrients: List<NutrientX>?,
+    @SerializedName("properties")
+    val properties: List<Property>?,
+    @SerializedName("weightPerServing")
+    val weightPerServing: WeightPerServing?
+)
+data class Property(
+    @SerializedName("amount")
+    val amount: Double?,
+    @SerializedName("name")
+    val name: String?,
+    @SerializedName("unit")
+    val unit: String?
+)
 data class Us(
     @SerializedName("amount")
     val amount: Double?,
@@ -126,7 +188,12 @@ data class Us(
     @SerializedName("unitShort")
     val unitShort: String?
 )
-
+data class WeightPerServing(
+    @SerializedName("amount")
+    val amount: Int?,
+    @SerializedName("unit")
+    val unit: String?
+)
 data class WinePairing(
     @SerializedName("pairedWines")
     val pairedWines: List<Any?>?,

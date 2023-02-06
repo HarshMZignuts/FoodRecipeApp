@@ -12,7 +12,7 @@ interface SimpleApi {
     @GET("recipes/716429/information?includeNutrition=false&apiKey=da3197b4102241f8ae2fcc793d2fa878")
     suspend fun getRecipe() : Response<Recipe>
 
-    @GET("recipes/{id}/information?apiKey=da3197b4102241f8ae2fcc793d2fa878")
+    @GET("recipes/{id}/information?includeNutrition=true&apiKey=da3197b4102241f8ae2fcc793d2fa878")
     suspend fun getRecipe2(
         @Path("id") id:Int
     ): Response<Detail>

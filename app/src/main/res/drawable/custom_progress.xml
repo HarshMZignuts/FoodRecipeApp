@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:id="@+id/background">
+    <shape android:shape="ring"
+        android:thickness="25dp"
+        android:useLevel="false"
+        >
+        <solid android:color="#A1D194"/>
+    </shape>
+</item>
+    <item
+        android:id="@+id/progrss">
+        <shape android:shape="ring"
+            android:thickness="25dp"
+            android:useLevel="true"
+            >
+            <solid android:color="#46DA1E"/>
+        </shape>
+    </item>
+</layer-list>

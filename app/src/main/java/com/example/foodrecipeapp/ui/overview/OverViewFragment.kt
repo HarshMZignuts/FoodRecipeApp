@@ -58,6 +58,7 @@ private lateinit var adapter :OverViewAdapter
     }
     private fun setUpObservers(){
         viewModel.myResponce4.observe(viewLifecycleOwner, Observer {
+
             it.results?.let {recipe->
                 adapter.setData(recipe.filterNotNull())
             }
