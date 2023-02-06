@@ -1,5 +1,6 @@
 package com.example.foodrecipeapp.api
 
+import com.example.foodrecipeapp.util.Detail
 import com.example.foodrecipeapp.util.Recipe
 import com.example.foodrecipeapp.util.RecipeResponse
 import retrofit2.Response
@@ -14,7 +15,7 @@ interface SimpleApi {
     @GET("recipes/{id}/information?apiKey=da3197b4102241f8ae2fcc793d2fa878")
     suspend fun getRecipe2(
         @Path("id") id:Int
-    ): Response<Recipe>
+    ): Response<Detail>
     @GET("recipes/complexSearch?apiKey=da3197b4102241f8ae2fcc793d2fa878")
     suspend fun getQurryRecipe(
         @Query("query") query:String

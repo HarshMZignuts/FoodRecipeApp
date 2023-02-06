@@ -2,6 +2,7 @@ package com.example.foodrecipeapp.repository
 
 import com.example.foodrecipeapp.api.RetrofitInstance
 import com.example.foodrecipeapp.api.SimpleApi
+import com.example.foodrecipeapp.util.Detail
 import com.example.foodrecipeapp.util.Recipe
 import com.example.foodrecipeapp.util.RecipeResponse
 import retrofit2.Response
@@ -14,7 +15,7 @@ class Repository @Inject constructor(
         return api.getRecipe()
     }
 
-    suspend fun getRecipe2(id:Int): Response<Recipe> {
+    suspend fun getRecipe2(id:Int): Response<Detail> {
         return api.getRecipe2(id)
     }
     suspend fun getQurryRecipe(query:String): Response<RecipeResponse>

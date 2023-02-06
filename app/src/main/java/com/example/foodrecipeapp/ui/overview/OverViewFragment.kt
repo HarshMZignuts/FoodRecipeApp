@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodrecipeapp.R
@@ -21,7 +22,7 @@ import timber.log.Timber
 class OverViewFragment : Fragment() {
 
 private lateinit var binding: FragmentOverViewBinding
-private val adapter = OverViewAdapter()
+private lateinit var adapter :OverViewAdapter
     private val viewModel : OverviewViewModel by viewModels()
 
     @SuppressLint("NotifyDataSetChanged")
@@ -41,6 +42,17 @@ private val adapter = OverViewAdapter()
         return view
     }
     private fun setUPUi(){
+        adapter = OverViewAdapter(onMainClick = {
+            Toast.makeText(requireContext(),"${it.title}",Toast.LENGTH_SHORT).show()
+            it.id?.let { it ->
+
+                findNavController().navigate(
+                    OverViewFragmentDirections.actionOverViewFragmentToDetailFragment(it)
+                )
+            }
+        }
+
+        )
         binding.recyclerView.layoutManager = GridLayoutManager(requireContext(),2)
         binding.recyclerView.adapter = adapter
     }

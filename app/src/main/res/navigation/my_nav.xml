@@ -8,5 +8,18 @@
         android:id="@+id/overViewFragment"
         android:name="com.example.foodrecipeapp.ui.overview.OverViewFragment"
         android:label="OverViewFragment"
-        tools:layout="@layout/fragment_over_view"/>
+        tools:layout="@layout/fragment_over_view">
+        <action
+            android:id="@+id/action_overViewFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.foodrecipeapp.ui.detail.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
 </navigation>

@@ -12,13 +12,19 @@ import com.example.foodrecipeapp.util.Recipe
 
 
 
-class OverViewAdapter : RecyclerView.Adapter<OverViewAdapter.MyViewHolder>() {
+class OverViewAdapter(
+    val onMainClick : (Recipe) -> Unit
+) : RecyclerView.Adapter<OverViewAdapter.MyViewHolder>() {
     private var recipeList= emptyList<Recipe?>()
 
     class MyViewHolder(private val binding:GridLayoutBinding):RecyclerView.ViewHolder(binding.root){
 
-        fun bind(currentItem : Recipe){
+        fun bind(currentItem : Recipe,
+                  onMainClick: (Recipe) -> Unit  ){
             binding.girdModel = currentItem
+            binding.root.setOnClickListener {
+                onMainClick(currentItem)
+            }
 
         }
         companion object{
@@ -37,7 +43,7 @@ class OverViewAdapter : RecyclerView.Adapter<OverViewAdapter.MyViewHolder>() {
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = recipeList.getOrNull(position)
         currentItem?.let {
-            holder.bind(it)
+            holder.bind(it,onMainClick)
         }
     }
 
