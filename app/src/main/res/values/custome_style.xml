@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Circuler">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+
+    </style>
+    <style name="RoundedSquare">
+        <item name="cornerSize">30%</item>
+    </style>
+    <style name="CoutnerCut">
+        <item name="cornerSize">50dp</item>
+        <item name="cornerFamily">cut</item>
+    </style>
+    <style name="DiamondCut">
+        <item name="cornerSize">150dp</item>
+        <item name="cornerFamily">cut</item>
+    </style>
+    <style name="SpasificCournerCut">
+        <item name="cornerSizeTopLeft">50dp</item>
+        <item name="cornerFamilyTopLeft">cut</item>
+        <item name="cornerSizeBottomRight">50dp</item>
+        <item name="cornerFamilyBottomRight">cut</item>
+    </style>
+    <style name="SpasificCournerCutRounded">
+
+        <item name="cornerSizeBottomLeft">80dp</item>
+        <item name="cornerFamilyBottomLeft">rounded</item>
+
+    </style>
+</resources>

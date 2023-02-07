@@ -9,17 +9,17 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface SimpleApi {
-    @GET("recipes/716429/information?includeNutrition=false&apiKey=9d1751511fdd4ef0b31098f7a87264ec")
+    @GET("recipes/716429/information?includeNutrition=false&apiKey=f8e4cf94f97547e6ab279071c4a09ccc")
     suspend fun getRecipe() : Response<Recipe>
 
-    @GET("recipes/{id}/information?includeNutrition=true&apiKey=9d1751511fdd4ef0b31098f7a87264ec")
+    @GET("recipes/{id}/information?includeNutrition=true&apiKey=f8e4cf94f97547e6ab279071c4a09ccc")
     suspend fun getRecipe2(
         @Path("id") id:Int
     ): Response<Detail>
-    @GET("recipes/complexSearch?apiKey=9d1751511fdd4ef0b31098f7a87264ec")
+    @GET("recipes/complexSearch?apiKey=f8e4cf94f97547e6ab279071c4a09ccc")
     suspend fun getQurryRecipe(
         @Query("query") query:String
     ): Response<RecipeResponse>
-    @GET("recipes/complexSearch?apiKey=9d1751511fdd4ef0b31098f7a87264ec&query=indian&number=20")
+    @GET("recipes/complexSearch?apiKey=f8e4cf94f97547e6ab279071c4a09ccc&query=indian&number=20")
     suspend fun getAllRecipe() : Response<RecipeResponse>
 }

@@ -2,9 +2,9 @@ package com.example.foodrecipeapp.util
 
 import androidx.recyclerview.widget.DiffUtil
 
-class DiffUtill(
-     val oldList : List<Recipe?>,
-     val newList: List<Recipe?>
+class DiffUtill<T>(
+     val oldList : List<T>,
+     val newList: List<T>
 ) : DiffUtil.Callback() {
     override fun getOldListSize(): Int {
         return oldList.size
@@ -15,25 +15,11 @@ class DiffUtill(
     }
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList[oldItemPosition]?.id == newList[newItemPosition]?.id
+        return oldList[oldItemPosition] == newList[newItemPosition]
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return when{
-            oldList[oldItemPosition]?.id != newList[newItemPosition]?.id->{
-                false
-            }
-            oldList[oldItemPosition]?.title != newList[newItemPosition]?.title->{
-                false
-            }
-            oldList[oldItemPosition]?.image != newList[newItemPosition]?.image->{
-                false
-            }
-            oldList[oldItemPosition]?.imageType != newList[newItemPosition]?.imageType->{
-                false
-            }
-            else->true
-        }
+        return oldList[oldItemPosition] == newList[newItemPosition]
     }
 
 }

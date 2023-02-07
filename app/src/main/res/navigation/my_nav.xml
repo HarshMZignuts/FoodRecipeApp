@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/overViewFragment"
         android:name="com.example.foodrecipeapp.ui.overview.OverViewFragment"
-        android:label="OverViewFragment"
+        android:label="List of Item"
         tools:layout="@layout/fragment_over_view">
         <action
             android:id="@+id/action_overViewFragment_to_detailFragment"
@@ -16,7 +16,7 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.foodrecipeapp.ui.detail.DetailFragment"
-        android:label="fragment_detail"
+        android:label="Details"
         tools:layout="@layout/fragment_detail" >
         <argument
             android:name="id"

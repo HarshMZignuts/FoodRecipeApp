@@ -7,11 +7,13 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.foodrecipeapp.repository.Repository
 import com.example.foodrecipeapp.util.Detail
+import com.example.foodrecipeapp.util.NutrientX
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import timber.log.Timber
 import javax.inject.Inject
+import kotlin.properties.Delegates
 
 @HiltViewModel
 class DetailViewModel
@@ -22,12 +24,18 @@ constructor(
 ):ViewModel()
 {
     val myResponce2: MutableLiveData<Response<Detail>> = MutableLiveData()
+    val mycarbs : MutableLiveData<NutrientX> = MutableLiveData()
+//    val fat : MutableLiveData<NutrientX> = MutableLiveData()
+//    var f1 by Delegates.notNull<Double>()
     fun getRecipe2(id: Int) {
 
         viewModelScope.launch {
             val response2: Response<Detail> = repository.getRecipe2(id)
             myResponce2.value = response2
+
+//            if(mycarbs.value?.name == "Fat") {
+//                f1 = mycarbs!!.value!!.amount!!
+        }
         }
 
     }
-}
