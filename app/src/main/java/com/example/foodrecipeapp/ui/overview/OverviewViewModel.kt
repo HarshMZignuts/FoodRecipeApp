@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.foodrecipeapp.R
 
 import com.example.foodrecipeapp.repository.Repository
-import com.example.foodrecipeapp.util.Recipe
+
 import com.example.foodrecipeapp.util.RecipeResponse
 
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,6 +25,7 @@ constructor(
     application: Application) : ViewModel(){
     val myResponce4: MutableLiveData<RecipeResponse> = MutableLiveData()
     val myResponce5: MutableLiveData<RecipeResponse> = MutableLiveData()
+   // val myresponce : MutableLiveData<Detail> = MutableLiveData()
     private val mContext = application
     fun getQurryRecipe2(){
         viewModelScope.launch {
@@ -39,6 +40,7 @@ constructor(
             }
         }
     }
+
     fun getAllRecipe2(){
 
             viewModelScope.launch {
@@ -46,6 +48,7 @@ constructor(
                 if (response5.isSuccessful){
                     response5.body().let {
                         myResponce5.value = it
+
                     }
                 }
                 else{

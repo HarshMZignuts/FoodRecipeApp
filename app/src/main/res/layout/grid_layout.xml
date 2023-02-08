@@ -7,6 +7,7 @@
             name="girdModel"
             type="com.example.foodrecipeapp.util.Recipe" />
 
+
     </data>
 <androidx.cardview.widget.CardView
     android:layout_width="match_parent"
@@ -64,22 +65,34 @@
                     app:layout_constraintStart_toStartOf="@+id/guideline"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Name" />
-
-                <TextView
-                    android:id="@+id/card_food_qty"
-                    android:layout_width="0dp"
+               <!-- <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
                     android:textColor="@color/white"
                     android:textSize="12sp"
-                    android:text=""
-                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/coking_minutes"
                     app:layout_constraintStart_toStartOf="@+id/guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/card_food_name" /> -->
+
+                <!-- <TextView
+                    android:id="@+id/card_food_qty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                   android:layout_marginTop="4dp"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                    app:layout_constraintHorizontal_bias="0.045"
+                    app:layout_constraintStart_toEndOf="@+id/textView4"
                     app:layout_constraintTop_toBottomOf="@+id/card_food_name"
                     tools:text="Quantity">
 
                 </TextView>
+
+
 
                 <TextView
                     android:id="@+id/card_food_cal"
@@ -95,7 +108,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/card_food_qty"
                     tools:text="calories">
 
-                </TextView>
+                </TextView> -->
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline"
@@ -110,6 +123,8 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     app:layout_constraintGuide_end="20dp" />
+
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

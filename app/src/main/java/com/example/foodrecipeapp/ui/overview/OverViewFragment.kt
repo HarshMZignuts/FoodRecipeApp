@@ -6,15 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.foodrecipeapp.R
+
 import com.example.foodrecipeapp.databinding.FragmentOverViewBinding
-import com.example.foodrecipeapp.databinding.GridLayoutBinding
+
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -43,7 +42,8 @@ private lateinit var adapter :OverViewAdapter
     }
     private fun setUPUi(){
         adapter = OverViewAdapter(onMainClick = {
-            Toast.makeText(requireContext(),"${it.title}",Toast.LENGTH_SHORT).show()
+            Timber.e(it.title)
+            // Toast.makeText(requireContext(),"${it.title}",Toast.LENGTH_SHORT).show()
             it.id?.let { it ->
 
                 findNavController().navigate(
@@ -61,6 +61,7 @@ private lateinit var adapter :OverViewAdapter
         viewModel.myResponce4.observe(viewLifecycleOwner, Observer {
 
             it.results?.let {recipe->
+
                 adapter.setData(recipe.filterNotNull())
             }
         })

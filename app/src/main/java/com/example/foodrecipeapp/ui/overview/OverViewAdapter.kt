@@ -16,7 +16,7 @@ class OverViewAdapter(
     val onMainClick : (Recipe) -> Unit
 ) : RecyclerView.Adapter<OverViewAdapter.MyViewHolder>() {
     private var recipeList= emptyList<Recipe>()
-
+   lateinit var  binding:GridLayoutBinding
     class MyViewHolder(private val binding:GridLayoutBinding):RecyclerView.ViewHolder(binding.root){
 
         fun bind(currentItem : Recipe,
@@ -58,4 +58,5 @@ class OverViewAdapter(
         diffResult.dispatchUpdatesTo(this)
 
     }
+
 }
