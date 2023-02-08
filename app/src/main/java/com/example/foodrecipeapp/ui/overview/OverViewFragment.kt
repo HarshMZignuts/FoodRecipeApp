@@ -53,6 +53,7 @@ private lateinit var adapter :OverViewAdapter
         }
 
         )
+
         binding.recyclerView.layoutManager = GridLayoutManager(requireContext(),2)
         binding.recyclerView.adapter = adapter
     }

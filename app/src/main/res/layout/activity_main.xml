@@ -11,6 +11,7 @@
         android:id="@+id/fragment"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        app:defaultNavHost="true"
         app:navGraph="@navigation/my_nav" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

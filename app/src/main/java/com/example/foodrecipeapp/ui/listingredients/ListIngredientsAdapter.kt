@@ -1,39 +1,29 @@
-package com.example.foodrecipeapp.ui.overview
+package com.example.foodrecipeapp.ui.listingredients
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-
-import com.example.foodrecipeapp.databinding.GridLayoutBinding
+import com.example.foodrecipeapp.databinding.CustomIngridiansBinding
+import com.example.foodrecipeapp.databinding.IndiListCustomeBinding
+import com.example.foodrecipeapp.ui.detail.DetailIngrideantAdapter
 import com.example.foodrecipeapp.util.DiffUtill
-import com.example.foodrecipeapp.util.Recipe
+import com.example.foodrecipeapp.util.ExtendedIngredient
 
-
-
-class OverViewAdapter(
-    val onMainClick : (Recipe) -> Unit
-) : RecyclerView.Adapter<OverViewAdapter.MyViewHolder>() {
-    private var recipeList= emptyList<Recipe>()
-
-    class MyViewHolder(private val binding:GridLayoutBinding):RecyclerView.ViewHolder(binding.root){
-
-        fun bind(currentItem : Recipe,
-                  onMainClick: (Recipe) -> Unit  ){
-            binding.girdModel = currentItem
-            binding.root.setOnClickListener {
-                onMainClick(currentItem)
-            }
-
+class ListIngredientsAdapter : RecyclerView.Adapter<ListIngredientsAdapter.MyViewHolder>() {
+    private var recipeList= emptyList<ExtendedIngredient>()
+    class MyViewHolder(private val binding : IndiListCustomeBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(currentItem : ExtendedIngredient){
+            binding.indiList = currentItem
         }
         companion object{
             fun from(parent: ViewGroup) : MyViewHolder{
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = GridLayoutBinding.inflate(layoutInflater,parent,false)
-                return MyViewHolder(binding)
+                val binding = IndiListCustomeBinding.inflate(layoutInflater,parent,false)
+                return ListIngredientsAdapter.MyViewHolder(binding)
             }
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -43,14 +33,14 @@ class OverViewAdapter(
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = recipeList.getOrNull(position)
         currentItem?.let {
-            holder.bind(it,onMainClick)
+            holder.bind(it)
         }
     }
 
     override fun getItemCount(): Int {
         return recipeList.size
     }
-    fun setData(recipeResponse: List<Recipe>){
+    fun setData(recipeResponse: List<ExtendedIngredient>){
         val diffUtil = DiffUtill(recipeList,recipeResponse)
         val diffResult = DiffUtil.calculateDiff(diffUtil)
 

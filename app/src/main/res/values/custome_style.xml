@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
     <style name="Circuler">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
@@ -24,8 +24,34 @@
     </style>
     <style name="SpasificCournerCutRounded">
 
-        <item name="cornerSizeBottomLeft">80dp</item>
+        <item name="cornerSizeBottomLeft">50dp</item>
         <item name="cornerFamilyBottomLeft">rounded</item>
+
+    </style>
+
+
+
+
+
+
+
+<!-- This is style for card view -->
+
+
+    <style name="CustomCardViewStyle" parent="@style/Widget.MaterialComponents.CardView">
+
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay_card_custom_corners</item>
+    </style>
+
+
+    <style name="ShapeAppearanceOverlay_card_custom_corners" parent="">
+        <item name="cornerFamilyTopRight">rounded</item>
+        <item name="cornerSizeTopRight">80dp</item>
+        <item name="cornerFamilyTopLeft">rounded</item>
+
+        <item name="cornerSizeTopLeft"></item>
+
+
 
     </style>
 </resources>

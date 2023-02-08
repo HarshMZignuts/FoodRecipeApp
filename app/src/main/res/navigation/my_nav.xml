@@ -24,5 +24,17 @@
         <action
             android:id="@+id/action_detailFragment_to_overViewFragment"
             app:destination="@id/overViewFragment" />
+        <action
+            android:id="@+id/action_detailFragment_to_listIngredientsFragment"
+            app:destination="@id/listIngredientsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listIngredientsFragment"
+        android:name="com.example.foodrecipeapp.ui.listingredients.ListIngredientsFragment"
+        android:label="ListIngredientsFragment"
+        tools:layout="@layout/fragment_list_ingredients">
+        <argument
+            android:name="id"
+            app:argType="integer" />
     </fragment>
 </navigation>

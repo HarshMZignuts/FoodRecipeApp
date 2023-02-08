@@ -1,6 +1,7 @@
 package com.example.foodrecipeapp.ui.overview
 
 import android.app.Application
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -48,7 +49,7 @@ constructor(
                     }
                 }
                 else{
-                    mContext.getString(R.string.no_internet)
+                    Toast.makeText(mContext,R.string.no_internet,Toast.LENGTH_SHORT).show()
                 }
 
             }

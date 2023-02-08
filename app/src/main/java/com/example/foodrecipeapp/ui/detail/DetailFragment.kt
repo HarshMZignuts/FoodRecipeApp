@@ -20,6 +20,8 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodrecipeapp.R
 import com.example.foodrecipeapp.databinding.FragmentDetailBinding
+import com.example.foodrecipeapp.ui.listingredients.ListIngredientsFragment
+import com.example.foodrecipeapp.ui.overview.OverViewFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -48,7 +50,9 @@ private val viewModel : DetailViewModel by viewModels()
     private fun setupUi(){
         adapter = DetailIngrideantAdapter()
         binding.recycleIndi.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-
+        binding.imgViewBack.setOnClickListener {
+            findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToOverViewFragment())
+        }
 
         binding.recycleIndi.adapter = adapter
         args.id.let {
@@ -111,6 +115,12 @@ private val viewModel : DetailViewModel by viewModels()
                     //this is for rating
                     var rating : Float = it?.healthScore!!.toFloat()*5/100
                     binding.ratingBar.rating = rating
+                    //set id for see indigidiants
+                    it.id?.let {it->
+                        binding.tvSeeDetailsIng.setOnClickListener {responce->
+                            findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToListIngredientsFragment(it))
+                        }
+                    }
 
 
                 }

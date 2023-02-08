@@ -10,4 +10,5 @@
     <string name="percentage_forment">(%1$s%%)</string>
     <string name="see_details">See details</string>
     <string name="ingredients">Ingredients</string>
+    <string name="measures">Measures:</string>
 </resources>
