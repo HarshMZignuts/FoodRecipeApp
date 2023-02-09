@@ -27,18 +27,19 @@ constructor(
     val myResponce5: MutableLiveData<RecipeResponse> = MutableLiveData()
    // val myresponce : MutableLiveData<Detail> = MutableLiveData()
     private val mContext = application
-    fun getQurryRecipe2(){
-        viewModelScope.launch {
+    fun getQurryRecipe2(query:String){
+
             viewModelScope.launch {
-                val response4 : Response<RecipeResponse> = repository.getQurryRecipe(query = "pizza")
+                val response4 : Response<RecipeResponse> = repository.getQurryRecipe(query)
                 if (response4.isSuccessful){
+
                     response4.body().let {
                         myResponce4.value = it
                     }
                 }
 
+
             }
-        }
     }
 
     fun getAllRecipe2(){
