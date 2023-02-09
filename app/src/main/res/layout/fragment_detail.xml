@@ -27,7 +27,7 @@
             android:scaleType="centerCrop"
             tools:src="@drawable/foo2"
 
-            app:shapeAppearanceOverlay="@style/SpasificCournerCutRounded"
+
             app:loadImage="@{String.valueOf(detailViewModel.image)}" />
 
         <com.google.android.material.card.MaterialCardView
@@ -60,12 +60,12 @@
                         android:id="@+id/tv_title_detail"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="76dp"
+                        android:layout_marginEnd="10dp"
+                        android:maxLines="2"
                         android:text="@{detailViewModel.title}"
                         android:textColor="@color/black"
                         android:textSize="25sp"
-                        app:layout_constraintEnd_toStartOf="@+id/guideline4"
-                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintEnd_toStartOf="@+id/ratingBar"
                         app:layout_constraintStart_toStartOf="@+id/guideline2"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="Title" />
@@ -73,9 +73,9 @@
                     <ProgressBar
                         android:id="@+id/progressBar"
                         style="?android:attr/progressBarStyle"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_marginTop="120dp"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_marginTop="100dp"
                         android:indeterminateOnly="false"
 
 
@@ -88,9 +88,9 @@
                     <ProgressBar
                         android:id="@+id/progressBar_fat"
                         style="?android:attr/progressBarStyle"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_marginTop="120dp"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_marginTop="100dp"
                         android:indeterminateOnly="false"
                         android:progressDrawable="@drawable/circular_progress_fat"
                         app:layout_constraintEnd_toStartOf="@+id/progressBar_protien"
@@ -101,9 +101,9 @@
                     <ProgressBar
                         android:id="@+id/progressBar_protien"
                         style="?android:attr/progressBarStyle"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_marginTop="120dp"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_marginTop="100dp"
                         android:indeterminateOnly="false"
                         android:progressDrawable="@drawable/circular_progress_protien"
                         app:layout_constraintEnd_toStartOf="@+id/progressBar_cal"
@@ -114,9 +114,9 @@
                     <ProgressBar
                         android:id="@+id/progressBar_cal"
                         style="?android:attr/progressBarStyle"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_marginTop="120dp"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_marginTop="100dp"
                         android:indeterminateOnly="false"
                         android:progressDrawable="@drawable/circular_progress_cal"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -325,6 +325,7 @@
                         android:id="@+id/tv_See_detail_recipe"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:text="@string/see_details"
                         android:textColor="#25D32C"
                         android:textSize="15sp"
@@ -371,12 +372,11 @@
                         style="?android:attr/ratingBarStyleSmall"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="24dp"
                         android:isIndicator="false"
                         android:numStars="5"
                         android:theme="@style/StarColor"
                         app:layout_constraintEnd_toStartOf="@+id/guideline4"
-                        app:layout_constraintHorizontal_bias="0.88"
+                        app:layout_constraintHorizontal_bias="0.863"
                         app:layout_constraintStart_toStartOf="@+id/guideline2"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:ignore="SpeakableTextPresentCheck"

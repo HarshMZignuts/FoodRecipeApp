@@ -11,15 +11,18 @@ import com.example.foodrecipeapp.util.DiffUtill
 import com.example.foodrecipeapp.util.ExtendedIngredient
 
 class ListIngredientsAdapter : RecyclerView.Adapter<ListIngredientsAdapter.MyViewHolder>() {
-    private var recipeList= emptyList<ExtendedIngredient>()
-    class MyViewHolder(private val binding : IndiListCustomeBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(currentItem : ExtendedIngredient){
+    private var recipeList = emptyList<ExtendedIngredient>()
+
+    class MyViewHolder(private val binding: IndiListCustomeBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(currentItem: ExtendedIngredient) {
             binding.indiList = currentItem
         }
-        companion object{
-            fun from(parent: ViewGroup) : MyViewHolder{
+
+        companion object {
+            fun from(parent: ViewGroup): MyViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = IndiListCustomeBinding.inflate(layoutInflater,parent,false)
+                val binding = IndiListCustomeBinding.inflate(layoutInflater, parent, false)
                 return ListIngredientsAdapter.MyViewHolder(binding)
             }
         }
@@ -40,11 +43,12 @@ class ListIngredientsAdapter : RecyclerView.Adapter<ListIngredientsAdapter.MyVie
     override fun getItemCount(): Int {
         return recipeList.size
     }
-    fun setData(recipeResponse: List<ExtendedIngredient>){
-        val diffUtil = DiffUtill(recipeList,recipeResponse)
+
+    fun setData(recipeResponse: List<ExtendedIngredient>) {
+        val diffUtil = DiffUtill(recipeList, recipeResponse)
         val diffResult = DiffUtil.calculateDiff(diffUtil)
 
-        recipeList=recipeResponse
+        recipeList = recipeResponse
         diffResult.dispatchUpdatesTo(this)
 
     }

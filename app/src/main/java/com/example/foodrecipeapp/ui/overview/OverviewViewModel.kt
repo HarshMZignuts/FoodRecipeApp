@@ -23,8 +23,8 @@ class OverviewViewModel
 constructor(
     private val repository:Repository,
     application: Application) : ViewModel(){
-    val myResponce4: MutableLiveData<RecipeResponse> = MutableLiveData()
-    val myResponce5: MutableLiveData<RecipeResponse> = MutableLiveData()
+    //val myResponce4: MutableLiveData<RecipeResponse> = MutableLiveData()
+    val myRecipeResponce: MutableLiveData<RecipeResponse> = MutableLiveData()
    // val myresponce : MutableLiveData<Detail> = MutableLiveData()
     private val mContext = application
     fun getQurryRecipe2(query:String){
@@ -34,8 +34,11 @@ constructor(
                 if (response4.isSuccessful){
 
                     response4.body().let {
-                        myResponce4.value = it
+                        myRecipeResponce.value = it
                     }
+                }
+                else {
+                    Toast.makeText(mContext,R.string.no_internet,Toast.LENGTH_SHORT).show()
                 }
 
 
@@ -48,7 +51,7 @@ constructor(
                 val response5 : Response<RecipeResponse> = repository.getAllRecipe()
                 if (response5.isSuccessful){
                     response5.body().let {
-                        myResponce5.value = it
+                        myRecipeResponce.value = it
 
                     }
                 }

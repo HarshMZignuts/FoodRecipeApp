@@ -11,26 +11,30 @@ import com.example.foodrecipeapp.util.DiffUtill
 import com.example.foodrecipeapp.util.Recipe
 
 
-
 class OverViewAdapter(
-    val onMainClick : (Recipe) -> Unit
+    val onMainClick: (Recipe) -> Unit
 ) : RecyclerView.Adapter<OverViewAdapter.MyViewHolder>() {
-    private var recipeList= emptyList<Recipe>()
-   lateinit var  binding:GridLayoutBinding
-    class MyViewHolder(private val binding:GridLayoutBinding):RecyclerView.ViewHolder(binding.root){
+    private var recipeList = emptyList<Recipe>()
+    lateinit var binding: GridLayoutBinding
 
-        fun bind(currentItem : Recipe,
-                  onMainClick: (Recipe) -> Unit  ){
+    class MyViewHolder(private val binding: GridLayoutBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(
+            currentItem: Recipe,
+            onMainClick: (Recipe) -> Unit
+        ) {
             binding.girdModel = currentItem
             binding.root.setOnClickListener {
                 onMainClick(currentItem)
             }
 
         }
-        companion object{
-            fun from(parent: ViewGroup) : MyViewHolder{
+
+        companion object {
+            fun from(parent: ViewGroup): MyViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = GridLayoutBinding.inflate(layoutInflater,parent,false)
+                val binding = GridLayoutBinding.inflate(layoutInflater, parent, false)
                 return MyViewHolder(binding)
             }
         }
@@ -43,18 +47,19 @@ class OverViewAdapter(
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = recipeList.getOrNull(position)
         currentItem?.let {
-            holder.bind(it,onMainClick)
+            holder.bind(it, onMainClick)
         }
     }
 
     override fun getItemCount(): Int {
         return recipeList.size
     }
-    fun setData(recipeResponse: List<Recipe>){
-        val diffUtil = DiffUtill(recipeList,recipeResponse)
+
+    fun setData(recipeResponse: List<Recipe>) {
+        val diffUtil = DiffUtill(recipeList, recipeResponse)
         val diffResult = DiffUtil.calculateDiff(diffUtil)
 
-        recipeList=recipeResponse
+        recipeList = recipeResponse
         diffResult.dispatchUpdatesTo(this)
 
     }

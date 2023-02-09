@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="Golden">#ffd700</color>
     <color name="Sadow">#999999</color>
+    <color name="background">#dddddd</color>
 </resources>

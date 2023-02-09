@@ -1,17 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:shimmer="http://schemas.android.com/apk/res-auto">
     <data>
 
     </data>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.listingredients.ListIngredientsFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_view_container"
+        shimmer:duration="800"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/listRecycler"
+        app:layout_constraintEnd_toEndOf="@+id/listRecycler"
+        app:layout_constraintStart_toStartOf="@+id/listRecycler"
+        app:layout_constraintTop_toTopOf="@+id/listRecycler">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <include layout="@layout/data_place_holder_indilist"/>
+            <include layout="@layout/data_place_holder_indilist"/>
+            <include layout="@layout/data_place_holder_indilist"/>
+            <include layout="@layout/data_place_holder_indilist"/>
+            <include layout="@layout/data_place_holder_indilist"/>
+        </LinearLayout>
+
+
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listRecycler"

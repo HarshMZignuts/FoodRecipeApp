@@ -28,6 +28,9 @@
         <item name="cornerFamilyBottomLeft">rounded</item>
 
     </style>
+    <style name="SpacifyCourbercutandRound">
+
+    </style>
 
 
 
@@ -46,7 +49,7 @@
 
     <style name="ShapeAppearanceOverlay_card_custom_corners" parent="">
         <item name="cornerFamilyTopRight">rounded</item>
-        <item name="cornerSizeTopRight">80dp</item>
+        <item name="cornerSizeTopRight">50dp</item>
         <item name="cornerFamilyTopLeft">rounded</item>
 
         <item name="cornerSizeTopLeft"></item>

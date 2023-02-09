@@ -18,9 +18,9 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ListIngredientsFragment : Fragment() {
-    private lateinit var binding : FragmentListIngredientsBinding
-    private lateinit var adapter : ListIngredientsAdapter
-    private val viewModel : DetailViewModel by viewModels()
+    private lateinit var binding: FragmentListIngredientsBinding
+    private lateinit var adapter: ListIngredientsAdapter
+    private val viewModel: DetailViewModel by viewModels()
     private val args by navArgs<ListIngredientsFragmentArgs>()
 
     override fun onCreateView(
@@ -28,12 +28,13 @@ class ListIngredientsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentListIngredientsBinding.inflate(inflater,container,false)
-       setUpUi()
+        binding = FragmentListIngredientsBinding.inflate(inflater, container, false)
+        setUpUi()
         setUpObsver()
         return binding.root
     }
-    private fun setUpUi(){
+
+    private fun setUpUi() {
         adapter = ListIngredientsAdapter()
         binding.listRecycler.layoutManager = LinearLayoutManager(requireContext())
         binding.listRecycler.adapter = adapter
@@ -42,16 +43,29 @@ class ListIngredientsFragment : Fragment() {
             viewModel.getRecipe2(it)
         }
     }
-    private fun setUpObsver(){
+
+    private fun setUpObsver() {
         viewModel.myResponce2.observe(viewLifecycleOwner, Observer {
             it.let {
                 it.body().let {
                     it?.extendedIngredients?.let {
                         adapter.setData(it)
                     }
+                    binding.shimmerViewContainer.stopShimmer()
+                    binding.shimmerViewContainer.visibility = View.GONE
                 }
             }
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.shimmerViewContainer.startShimmer()
+    }
+
+    override fun onPause() {
+        binding.shimmerViewContainer.stopShimmer()
+        super.onPause()
     }
 
 }

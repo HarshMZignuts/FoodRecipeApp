@@ -27,12 +27,10 @@ import timber.log.Timber
 
 @AndroidEntryPoint
 class DetailFragment : Fragment() {
-private lateinit var binding : FragmentDetailBinding
-private lateinit var adapter: DetailIngrideantAdapter
-private val viewModel : DetailViewModel by viewModels()
+    private lateinit var binding: FragmentDetailBinding
+    private lateinit var adapter: DetailIngrideantAdapter
+    private val viewModel: DetailViewModel by viewModels()
     private val args by navArgs<DetailFragmentArgs>()
-
-
 
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -41,58 +39,69 @@ private val viewModel : DetailViewModel by viewModels()
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentDetailBinding.inflate(inflater,container,false)
-        
+        binding = FragmentDetailBinding.inflate(inflater, container, false)
+
         setupUi()
         setUpObservers()
         return binding.root
     }
-    private fun setupUi(){
+
+    private fun setupUi() {
         adapter = DetailIngrideantAdapter()
-        binding.recycleIndi.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+        binding.recycleIndi.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.imgViewBack.setOnClickListener {
-            findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToOverViewFragment())
+            findNavController().navigateUp()
         }
 
         binding.recycleIndi.adapter = adapter
         args.id.let {
             Timber.e(it.toString())
-          viewModel.getRecipe2(it)
-          
+            viewModel.getRecipe2(it)
+
         }
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
     @SuppressLint("StringFormatInvalid", "SuspiciousIndentation")
-    private fun setUpObservers(){
+    private fun setUpObservers() {
         viewModel.myResponce2.observe(viewLifecycleOwner, Observer {
             it.let {
                 it.body().let {
                     binding.detailViewModel = it
                     val df = DecimalFormat("#.##")
                     it?.nutrition?.nutrients?.forEach {
-                        var perv=it.amount!!*it.percentOfDailyNeeds!!/100
+                        var perv = it.amount!! * it.percentOfDailyNeeds!! / 100
                         when (it.name) {
                             "Carbohydrates" -> {
                                 Timber.e("Carbohydrates ${it.percentOfDailyNeeds}")
                                 binding.progressBar.progress = it.percentOfDailyNeeds.toInt()
                                 binding.tvCarbAmount.text = it.amount.toString()
                                 binding.tvCarbUnit.text = it.unit
-                                binding.tvCarbPer.text = this.resources.getString(R.string.percentage_forment,df.format(it.percentOfDailyNeeds))
+                                binding.tvCarbPer.text = this.resources.getString(
+                                    R.string.percentage_forment,
+                                    df.format(it.percentOfDailyNeeds)
+                                )
                             }
                             "Fat" -> {
                                 Timber.e("Fat ${it.percentOfDailyNeeds}")
                                 binding.progressBarFat.progress = it.percentOfDailyNeeds.toInt()
                                 binding.tvFatAmount.text = it.amount.toString()
                                 binding.tvFatUnit.text = it.unit
-                                binding.tvFatPer.text = this.resources.getString(R.string.percentage_forment,df.format(it.percentOfDailyNeeds))
+                                binding.tvFatPer.text = this.resources.getString(
+                                    R.string.percentage_forment,
+                                    df.format(it.percentOfDailyNeeds)
+                                )
                             }
                             "Protein" -> {
                                 Timber.e("Protein ${it.percentOfDailyNeeds}")
                                 binding.progressBarProtien.progress = it.percentOfDailyNeeds.toInt()
                                 binding.tvProAmount.text = it.amount.toString()
                                 binding.tvProUnit.text = it.unit
-                                binding.tvProPer.text = this.resources.getString(R.string.percentage_forment,df.format(it.percentOfDailyNeeds))
+                                binding.tvProPer.text = this.resources.getString(
+                                    R.string.percentage_forment,
+                                    df.format(it.percentOfDailyNeeds)
+                                )
                             }
                             "Calories" -> {
                                 Timber.e("Calories ${it.percentOfDailyNeeds}")
@@ -103,22 +112,26 @@ private val viewModel : DetailViewModel by viewModels()
                         }
                     }
                     var url = it?.sourceUrl
-                        binding.tvSeeDetailRecipe.setOnClickListener {
-                            var intent = Intent(Intent.ACTION_VIEW)
-                            intent.data = Uri.parse(url)
-                            startActivity(intent)
-                        }
+                    binding.tvSeeDetailRecipe.setOnClickListener {
+                        var intent = Intent(Intent.ACTION_VIEW)
+                        intent.data = Uri.parse(url)
+                        startActivity(intent)
+                    }
 
-                    it?.extendedIngredients?.let {responce->
-                            adapter.setData(responce)
+                    it?.extendedIngredients?.let { responce ->
+                        adapter.setData(responce)
                     }
                     //this is for rating
-                    var rating : Float = it?.healthScore!!.toFloat()*5/100
+                    val rating: Float = it?.healthScore!!.toFloat() * 5 / 100
                     binding.ratingBar.rating = rating
                     //set id for see indigidiants
-                    it.id?.let {it->
-                        binding.tvSeeDetailsIng.setOnClickListener {responce->
-                            findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToListIngredientsFragment(it))
+                    it.id?.let { it ->
+                        binding.tvSeeDetailsIng.setOnClickListener { responce ->
+                            findNavController().navigate(
+                                DetailFragmentDirections.actionDetailFragmentToListIngredientsFragment(
+                                    it
+                                )
+                            )
                         }
                     }
 
@@ -128,5 +141,5 @@ private val viewModel : DetailViewModel by viewModels()
         })
 
 
-
-}}
+    }
+}

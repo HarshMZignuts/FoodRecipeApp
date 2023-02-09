@@ -9,18 +9,19 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface SimpleApi {
-    @GET("recipes/716429/information?includeNutrition=false&apiKey=da3197b4102241f8ae2fcc793d2fa878")
+    @GET("recipes/716429/information?includeNutrition=false&apiKey=4cd93b1b1eea49b89d849a06fd60a6c7")
     suspend fun getRecipe() : Response<Recipe>
 
-    @GET("recipes/{id}/information?includeNutrition=true&apiKey=da3197b4102241f8ae2fcc793d2fa878")
+    @GET("recipes/{id}/information?includeNutrition=true&apiKey=4cd93b1b1eea49b89d849a06fd60a6c7")
     suspend fun getRecipe2(
         @Path("id") id:Int
     ): Response<Detail>
-    @GET("recipes/complexSearch?apiKey=da3197b4102241f8ae2fcc793d2fa878")
+    @GET("recipes/complexSearch?apiKey=4cd93b1b1eea49b89d849a06fd60a6c7")
     suspend fun getQurryRecipe(
         @Query("query") query:String
     ): Response<RecipeResponse>
-    @GET("recipes/complexSearch?apiKey=da3197b4102241f8ae2fcc793d2fa878&number=20")
+    @GET("recipes/complexSearch?apiKey=4cd93b1b1eea49b89d849a06fd60a6c7&number=20")
     suspend fun getAllRecipe() : Response<RecipeResponse>
     //&query=ramen
 }
+

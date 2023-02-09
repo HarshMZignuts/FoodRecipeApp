@@ -9,17 +9,20 @@ import com.example.foodrecipeapp.util.DiffUtill
 import com.example.foodrecipeapp.util.ExtendedIngredient
 
 class DetailIngrideantAdapter : RecyclerView.Adapter<DetailIngrideantAdapter.MyViewHolder>() {
-    private var recipeList= emptyList<ExtendedIngredient>()
+    private var recipeList = emptyList<ExtendedIngredient>()
     private val limit = 5
-    class MyViewHolder(private val binding : CustomIngridiansBinding) : RecyclerView.ViewHolder(binding.root){
 
-        fun bind(currentItem : ExtendedIngredient){
+    class MyViewHolder(private val binding: CustomIngridiansBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(currentItem: ExtendedIngredient) {
             binding.ideModel = currentItem
         }
-        companion object{
-            fun from(parent: ViewGroup) : MyViewHolder{
+
+        companion object {
+            fun from(parent: ViewGroup): MyViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = CustomIngridiansBinding.inflate(layoutInflater,parent,false)
+                val binding = CustomIngridiansBinding.inflate(layoutInflater, parent, false)
                 return DetailIngrideantAdapter.MyViewHolder(binding)
             }
 
@@ -27,7 +30,7 @@ class DetailIngrideantAdapter : RecyclerView.Adapter<DetailIngrideantAdapter.MyV
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-       return MyViewHolder.from(parent)
+        return MyViewHolder.from(parent)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
@@ -38,19 +41,18 @@ class DetailIngrideantAdapter : RecyclerView.Adapter<DetailIngrideantAdapter.MyV
     }
 
     override fun getItemCount(): Int {
-        if (recipeList.size>limit)
-        {
+        if (recipeList.size > limit) {
             return limit
-        }
-        else {
+        } else {
             return recipeList.size
         }
     }
-    fun setData(recipeResponse: List<ExtendedIngredient>){
-        val diffUtil = DiffUtill(recipeList,recipeResponse)
+
+    fun setData(recipeResponse: List<ExtendedIngredient>) {
+        val diffUtil = DiffUtill(recipeList, recipeResponse)
         val diffResult = DiffUtil.calculateDiff(diffUtil)
 
-        recipeList=recipeResponse
+        recipeList = recipeResponse
         diffResult.dispatchUpdatesTo(this)
 
     }
