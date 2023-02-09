@@ -94,11 +94,17 @@ private lateinit var adapter :OverViewAdapter
                         for(i in recipe)
                         {
                             if(i?.title?.lowercase(Locale.ROOT)!!.contains(binding.searchView.query)){
-                                filterlist.add(i!!)
+                                filterlist.add(i)
                             }
                         }
-
+                        if (filterlist.isEmpty()){
+                            Toast.makeText(requireContext(),"No data Found",Toast.LENGTH_SHORT).show()
+                        }
+                        else{
                             adapter.setData(filterlist)
+                        }
+
+
 
                         return true
                     }
@@ -108,12 +114,10 @@ private lateinit var adapter :OverViewAdapter
                         for(i in recipe)
                         {
                             if(i?.title?.lowercase(Locale.ROOT)!!.contains(binding.searchView.query)){
-                                filterlist.add(i!!)
+                                filterlist.add(i)
                             }
                         }
-
-                            adapter.setData(filterlist)
-                        
+                        adapter.setData(filterlist)
                         return true
                     }
 
