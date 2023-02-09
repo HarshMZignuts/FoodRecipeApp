@@ -9,7 +9,7 @@ import com.example.foodrecipeapp.R
 fun loadImage(imageView: ImageView?, url: String?){
     imageView?.load(url){
         crossfade(true)
-        placeholder(R.drawable.ic_baseline_downloading_24)
+        placeholder(R.drawable.paceholder)
         error(R.drawable.image_not_found)
     }
 }
