@@ -2,6 +2,8 @@ package com.example.foodrecipeapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+
+import androidx.fragment.app.FragmentActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,8 +18,6 @@ class MainActivity : AppCompatActivity() {
 //        setupActionBarWithNavController(findNavController(R.id.fragment))
     }
 
-//    override fun onSupportNavigateUp(): Boolean {
-//        val navController = findNavController(R.id.fragment)
-//        return navController.navigateUp() || super.onSupportNavigateUp()
-//    }
+
+
 }

@@ -2,7 +2,7 @@
 <layout xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:shimmer="http://schemas.android.com/apk/res-auto">
+   >
     <data>
 
     </data>
@@ -10,10 +10,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.overview.OverViewFragment">
+        tools:context=".ui.overview.OverViewFragment"
+        tools:ignore="MissingClass">
 
         <!-- TODO: Update blank fragment layout -->
-        <com.facebook.shimmer.ShimmerFrameLayout
+      <!--  <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/shimmer_view_container"
             shimmer:duration="800"
             android:layout_width="0dp"
@@ -38,9 +39,10 @@
 
 
             </GridLayout>
-        </com.facebook.shimmer.ShimmerFrameLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout> -->
 
-        <androidx.recyclerview.widget.RecyclerView
+
+        <com.todkars.shimmer.ShimmerRecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -57,6 +59,9 @@
             app:layout_constraintVertical_bias="0.0"
             app:spanCount="2"
             tools:itemCount="10"
+            app:shimmer_recycler_layout="@layout/data_place_hloder"
+
+
             tools:listitem="@layout/grid_layout" />
 
         <androidx.cardview.widget.CardView
@@ -64,7 +69,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            app:cardCornerRadius="12dp"
+            app:cardCornerRadius="25dp"
             app:cardElevation="10dp"
             app:cardUseCompatPadding="true"
             app:layout_constraintEnd_toEndOf="parent"

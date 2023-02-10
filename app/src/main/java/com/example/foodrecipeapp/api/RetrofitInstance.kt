@@ -18,14 +18,13 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object RetrofitInstance {
     //this code for check log
+    val logging = HttpLoggingInterceptor().apply {
+        level = HttpLoggingInterceptor.Level.BODY
+    }
+
     @Singleton
     @Provides
     fun provideHttpClient():OkHttpClient{
-
-        val logging = HttpLoggingInterceptor()
-        if (BuildConfig.DEBUG) {
-            logging.level = HttpLoggingInterceptor.Level.BODY
-        }
 
         return OkHttpClient.Builder()
             .readTimeout(15, TimeUnit.SECONDS)

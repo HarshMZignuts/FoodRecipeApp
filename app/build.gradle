@@ -4,12 +4,16 @@ plugins {
     id 'kotlin-kapt'
     id("androidx.navigation.safeargs.kotlin")
     id 'dagger.hilt.android.plugin'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
 }
 
 android {
     namespace 'com.example.foodrecipeapp'
     compileSdk 33
-
+    androidExtensions {
+        experimental = true
+    }
     defaultConfig {
         applicationId "com.example.foodrecipeapp"
         minSdk 21
@@ -96,7 +100,9 @@ dependencies {
     // Image Loading library Coil
     implementation "io.coil-kt:coil:2.2.2"
     //ShimmarLayout
-    implementation 'com.facebook.shimmer:shimmer:0.5.0@aar'
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+    implementation 'com.todkars:shimmer-recyclerview:0.4.1'
+
 
 
 }

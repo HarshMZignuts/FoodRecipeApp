@@ -1,13 +1,16 @@
 package com.example.foodrecipeapp.ui.overview
 
 import android.app.Application
+import android.os.Build
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.foodrecipeapp.R
 
 import com.example.foodrecipeapp.repository.Repository
+import com.example.foodrecipeapp.util.BaseViewModel
+import com.example.foodrecipeapp.util.NetworkResult
 
 import com.example.foodrecipeapp.util.RecipeResponse
 
@@ -22,41 +25,54 @@ class OverviewViewModel
 @Inject
 constructor(
     private val repository:Repository,
-    application: Application) : ViewModel(){
+    application: Application) : BaseViewModel(application){
     //val myResponce4: MutableLiveData<RecipeResponse> = MutableLiveData()
-    val myRecipeResponce: MutableLiveData<RecipeResponse> = MutableLiveData()
+//    val myRecipeResponce: MutableLiveData<RecipeResponse> = MutableLiveData()
+    val myRecipeResponce: MutableLiveData<NetworkResult<RecipeResponse>> = MutableLiveData()
    // val myresponce : MutableLiveData<Detail> = MutableLiveData()
     private val mContext = application
+    @RequiresApi(Build.VERSION_CODES.M)
     fun getQurryRecipe2(query:String){
 
             viewModelScope.launch {
-                val response4 : Response<RecipeResponse> = repository.getQurryRecipe(query)
-                if (response4.isSuccessful){
+                myRecipeResponce.value = NetworkResult.Loading()
 
-                    response4.body().let {
-                        myRecipeResponce.value = it
-                    }
+                if (isConnected()){
+
+
+                        val response4 : Response<RecipeResponse> = repository.getQurryRecipe(query)
+                        myRecipeResponce.value = handleResponse(response4)
+
+
                 }
                 else {
-                    Toast.makeText(mContext,R.string.no_internet,Toast.LENGTH_SHORT).show()
+                    myRecipeResponce.value = NetworkResult.Error(
+                        mContext.getString(R.string.no_internet)
+                    )
                 }
 
 
             }
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     fun getAllRecipe2(){
 
             viewModelScope.launch {
-                val response5 : Response<RecipeResponse> = repository.getAllRecipe()
-                if (response5.isSuccessful){
-                    response5.body().let {
-                        myRecipeResponce.value = it
+                myRecipeResponce.value = NetworkResult.Loading()
 
-                    }
+                if (isConnected()){
+
+                        val response5 : Response<RecipeResponse> = repository.getAllRecipe()
+
+                        myRecipeResponce.value = handleResponse(response5)
+
+
                 }
                 else{
-                    Toast.makeText(mContext,R.string.no_internet,Toast.LENGTH_SHORT).show()
+                    myRecipeResponce.value = NetworkResult.Error(
+                        mContext.getString(R.string.no_internet)
+                    )
                 }
 
             }
