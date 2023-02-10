@@ -67,65 +67,71 @@ class DetailFragment : Fragment() {
     private fun setUpObservers() {
         viewModel.myResponce2.observe(viewLifecycleOwner, Observer {
             it.let {
-                it.body().let {
-                    binding.detailViewModel = it
+                it.body().let  { detail->
+
+                    binding.detailViewModel = detail
                     val df = DecimalFormat("#.##")
-                    it?.nutrition?.nutrients?.forEach {
-                        var perv = it.amount!! * it.percentOfDailyNeeds!! / 100
-                        when (it.name) {
+//                    binding.shimmerViewContainer.stopShimmer()
+//                    binding.shimmerViewContainer.visibility = View.GONE
+                    detail?.nutrition?.nutrients?.forEach {  nutrient->
+
+                        when (nutrient.name) {
                             "Carbohydrates" -> {
-                                Timber.e("Carbohydrates ${it.percentOfDailyNeeds}")
-                                binding.progressBar.progress = it.percentOfDailyNeeds.toInt()
-                                binding.tvCarbAmount.text = it.amount.toString()
-                                binding.tvCarbUnit.text = it.unit
+                                Timber.e("Carbohydrates ${nutrient.percentOfDailyNeeds}")
+                                binding.progressBar.progress = nutrient.percentOfDailyNeeds!!.toInt()
+                                binding.tvCarbAmount.text = nutrient.amount.toString()
+                                binding.tvCarbUnit.text = nutrient.unit
                                 binding.tvCarbPer.text = this.resources.getString(
                                     R.string.percentage_forment,
-                                    df.format(it.percentOfDailyNeeds)
+                                    df.format(nutrient.percentOfDailyNeeds)
                                 )
                             }
                             "Fat" -> {
-                                Timber.e("Fat ${it.percentOfDailyNeeds}")
-                                binding.progressBarFat.progress = it.percentOfDailyNeeds.toInt()
-                                binding.tvFatAmount.text = it.amount.toString()
-                                binding.tvFatUnit.text = it.unit
+                                Timber.e("Fat ${nutrient.percentOfDailyNeeds}")
+                                binding.progressBarFat.progress = nutrient.percentOfDailyNeeds!!.toInt()
+                                binding.tvFatAmount.text = nutrient.amount.toString()
+                                binding.tvFatUnit.text = nutrient.unit
                                 binding.tvFatPer.text = this.resources.getString(
                                     R.string.percentage_forment,
-                                    df.format(it.percentOfDailyNeeds)
+                                    df.format(nutrient.percentOfDailyNeeds)
                                 )
                             }
                             "Protein" -> {
-                                Timber.e("Protein ${it.percentOfDailyNeeds}")
-                                binding.progressBarProtien.progress = it.percentOfDailyNeeds.toInt()
-                                binding.tvProAmount.text = it.amount.toString()
-                                binding.tvProUnit.text = it.unit
+                                Timber.e("Protein ${nutrient.percentOfDailyNeeds}")
+                                binding.progressBarProtien.progress = nutrient.percentOfDailyNeeds!!.toInt()
+                                binding.tvProAmount.text = nutrient.amount.toString()
+                                binding.tvProUnit.text = nutrient.unit
                                 binding.tvProPer.text = this.resources.getString(
                                     R.string.percentage_forment,
-                                    df.format(it.percentOfDailyNeeds)
+                                    df.format(nutrient.percentOfDailyNeeds)
                                 )
                             }
                             "Calories" -> {
-                                Timber.e("Calories ${it.percentOfDailyNeeds}")
-                                binding.progressBarCal.progress = it.percentOfDailyNeeds.toInt()
-                                binding.tvCalAmount.text = it.amount.toString()
-                                binding.tvCalUnit.text = it.unit
+                                Timber.e("Calories ${nutrient.percentOfDailyNeeds}")
+                                binding.progressBarCal.progress = nutrient.percentOfDailyNeeds!!.toInt()
+                                binding.tvCalAmount.text = nutrient.amount.toString()
+                                binding.tvCalUnit.text = nutrient.unit
                             }
                         }
                     }
-                    var url = it?.sourceUrl
+
+                    val url = detail?.sourceUrl
                     binding.tvSeeDetailRecipe.setOnClickListener {
-                        var intent = Intent(Intent.ACTION_VIEW)
+
+                        val intent = Intent(Intent.ACTION_VIEW)
                         intent.data = Uri.parse(url)
                         startActivity(intent)
                     }
 
-                    it?.extendedIngredients?.let { responce ->
+                    detail?.extendedIngredients?.let { responce ->
                         adapter.setData(responce)
                     }
+
                     //this is for rating
-                    val rating: Float = it?.healthScore!!.toFloat() * 5 / 100
+                    val rating: Float = detail?.healthScore!!.toFloat() * 5 / 100
                     binding.ratingBar.rating = rating
                     //set id for see indigidiants
-                    it.id?.let { it ->
+                    detail.id?.let { it ->
                         binding.tvSeeDetailsIng.setOnClickListener { responce ->
                             findNavController().navigate(
                                 DetailFragmentDirections.actionDetailFragmentToListIngredientsFragment(
@@ -136,10 +142,22 @@ class DetailFragment : Fragment() {
                     }
 
 
+
                 }
+
             }
         })
 
 
     }
+
+//    override fun onResume() {
+//        super.onResume()
+//        binding.shimmerViewContainer.startShimmer()
+//    }
+//
+//    override fun onPause() {
+//        binding.shimmerViewContainer.stopShimmer()
+//        super.onPause()
+//    }
 }

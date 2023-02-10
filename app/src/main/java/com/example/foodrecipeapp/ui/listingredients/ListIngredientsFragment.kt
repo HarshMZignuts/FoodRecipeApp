@@ -47,9 +47,9 @@ class ListIngredientsFragment : Fragment() {
     private fun setUpObsver() {
         viewModel.myResponce2.observe(viewLifecycleOwner, Observer {
             it.let {
-                it.body().let {
-                    it?.extendedIngredients?.let {
-                        adapter.setData(it)
+                it.body().let  { detail->
+                    detail?.extendedIngredients?.let {exingi->
+                        adapter.setData(exingi)
                     }
                     binding.shimmerViewContainer.stopShimmer()
                     binding.shimmerViewContainer.visibility = View.GONE
