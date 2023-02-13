@@ -53,7 +53,9 @@ constructor(
 
 
             } else {
-                Toast.makeText(mContext, R.string.no_internet, Toast.LENGTH_SHORT).show()
+                _myResponceData.value = NetworkResult.Error(
+                    context.resources.getString(R.string.no_internet)
+                )
             }
 
 

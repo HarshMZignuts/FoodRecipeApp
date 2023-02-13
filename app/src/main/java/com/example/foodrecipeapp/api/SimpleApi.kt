@@ -1,7 +1,7 @@
 package com.example.foodrecipeapp.api
 
 import com.example.foodrecipeapp.util.Detail
-import com.example.foodrecipeapp.util.NetworkResult
+
 import com.example.foodrecipeapp.util.Recipe
 import com.example.foodrecipeapp.util.RecipeResponse
 import retrofit2.Response
