@@ -18,13 +18,14 @@ import com.example.foodrecipeapp.databinding.FragmentListIngredientsBinding
 import com.example.foodrecipeapp.ui.detail.DetailIngrideantAdapter
 import com.example.foodrecipeapp.ui.detail.DetailViewModel
 import com.example.foodrecipeapp.util.NetworkResult
+import com.example.foodrecipeapp.util.snackBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ListIngredientsFragment : Fragment() {
-    private  var _binding: FragmentListIngredientsBinding? = null
-    private val binding : FragmentListIngredientsBinding
-    get() = _binding!!
+    private var _binding: FragmentListIngredientsBinding? = null
+    private val binding: FragmentListIngredientsBinding
+        get() = _binding!!
     private lateinit var adapter: ListIngredientsAdapter
     private val viewModel: DetailViewModel by viewModels()
     private val args by navArgs<ListIngredientsFragmentArgs>()
@@ -54,24 +55,24 @@ class ListIngredientsFragment : Fragment() {
     }
 
     private fun setUpObsver() {
-        viewModel.myResponce2.observe(viewLifecycleOwner, Observer {response->
-            when(response){
-                is NetworkResult.Error ->{
-                    response.message
+        viewModel.myResponceData.observe(viewLifecycleOwner, Observer { response ->
+            when (response) {
+                is NetworkResult.Error -> {
+                    response.message?.snackBar(requireView(), requireContext())
                 }
-                is NetworkResult.Loading->{
+                is NetworkResult.Loading -> {
                     binding.listRecycler.showShimmer()
-                    Handler().postDelayed({
-                        binding.listRecycler.hideShimmer()
-                    },3000)
+
+
                 }
-                is NetworkResult.Success ->{
-                    response.data.let  { detail->
-                        detail?.extendedIngredients?.let {exingi->
+                is NetworkResult.Success -> {
+                    binding.listRecycler.hideShimmer()
+                    response.data.let { detail ->
+
+                        detail?.extendedIngredients?.let { exingi ->
                             adapter.setData(exingi)
                         }
-//                        binding.shimmerViewContainer.stopShimmer()
-//                        binding.shimmerViewContainer.visibility = View.GONE
+
                     }
                 }
 
@@ -81,14 +82,10 @@ class ListIngredientsFragment : Fragment() {
         })
     }
 
-    override fun onResume() {
-        super.onResume()
-//        binding.shimmerViewContainer.startShimmer()
-    }
 
-    override fun onPause() {
-//        binding.shimmerViewContainer.stopShimmer()
-        super.onPause()
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

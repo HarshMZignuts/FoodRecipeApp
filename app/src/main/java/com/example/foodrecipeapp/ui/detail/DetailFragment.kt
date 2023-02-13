@@ -25,6 +25,7 @@ import com.example.foodrecipeapp.ui.listingredients.ListIngredientsFragment
 import com.example.foodrecipeapp.ui.overview.OverViewFragment
 import com.example.foodrecipeapp.ui.overview.OverViewFragmentDirections
 import com.example.foodrecipeapp.util.NetworkResult
+import com.example.foodrecipeapp.util.snackBar
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -39,7 +40,6 @@ class DetailFragment : Fragment() {
     private lateinit var adapter: DetailIngrideantAdapter
     private val viewModel: DetailViewModel by viewModels()
     private val args by navArgs<DetailFragmentArgs>()
-
 
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -78,28 +78,28 @@ class DetailFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.N)
     @SuppressLint("StringFormatInvalid", "SuspiciousIndentation")
     private fun setUpObservers() {
-        viewModel.myResponce2.observe(viewLifecycleOwner, Observer {response->
-            when(response){
-                is NetworkResult.Error ->{
-                    response.message
+        viewModel.myResponceData.observe(viewLifecycleOwner, Observer { response ->
+            when (response) {
+                is NetworkResult.Error -> {
+                    response.message?.snackBar(requireView(), requireContext())
                 }
-                is NetworkResult.Loading->{
+                is NetworkResult.Loading -> {
 
                 }
 
-                is NetworkResult.Success ->{
-                    response.data.let { detail->
+                is NetworkResult.Success -> {
+                    response.data.let { detail ->
 
                         binding.detailViewModel = detail
                         val df = DecimalFormat("#.##")
-//                    binding.shimmerViewContainer.stopShimmer()
-//                    binding.shimmerViewContainer.visibility = View.GONE
-                        detail?.nutrition?.nutrients?.forEach {  nutrient->
+
+                        detail?.nutrition?.nutrients?.forEach { nutrient ->
 
                             when (nutrient.name) {
                                 "Carbohydrates" -> {
                                     Timber.e("Carbohydrates ${nutrient.percentOfDailyNeeds}")
-                                    binding.progressBar.progress = nutrient.percentOfDailyNeeds!!.toInt()
+                                    binding.progressBar.progress =
+                                        nutrient.percentOfDailyNeeds!!.toInt()
                                     binding.tvCarbAmount.text = nutrient.amount.toString()
                                     binding.tvCarbUnit.text = nutrient.unit
                                     binding.tvCarbPer.text = this.resources.getString(
@@ -109,7 +109,8 @@ class DetailFragment : Fragment() {
                                 }
                                 "Fat" -> {
                                     Timber.e("Fat ${nutrient.percentOfDailyNeeds}")
-                                    binding.progressBarFat.progress = nutrient.percentOfDailyNeeds!!.toInt()
+                                    binding.progressBarFat.progress =
+                                        nutrient.percentOfDailyNeeds!!.toInt()
                                     binding.tvFatAmount.text = nutrient.amount.toString()
                                     binding.tvFatUnit.text = nutrient.unit
                                     binding.tvFatPer.text = this.resources.getString(
@@ -119,7 +120,8 @@ class DetailFragment : Fragment() {
                                 }
                                 "Protein" -> {
                                     Timber.e("Protein ${nutrient.percentOfDailyNeeds}")
-                                    binding.progressBarProtien.progress = nutrient.percentOfDailyNeeds!!.toInt()
+                                    binding.progressBarProtien.progress =
+                                        nutrient.percentOfDailyNeeds!!.toInt()
                                     binding.tvProAmount.text = nutrient.amount.toString()
                                     binding.tvProUnit.text = nutrient.unit
                                     binding.tvProPer.text = this.resources.getString(
@@ -129,7 +131,8 @@ class DetailFragment : Fragment() {
                                 }
                                 "Calories" -> {
                                     Timber.e("Calories ${nutrient.percentOfDailyNeeds}")
-                                    binding.progressBarCal.progress = nutrient.percentOfDailyNeeds!!.toInt()
+                                    binding.progressBarCal.progress =
+                                        nutrient.percentOfDailyNeeds!!.toInt()
                                     binding.tvCalAmount.text = nutrient.amount.toString()
                                     binding.tvCalUnit.text = nutrient.unit
                                 }
@@ -177,13 +180,5 @@ class DetailFragment : Fragment() {
         _binding = null
     }
 
-//    override fun onResume() {
-//        super.onResume()
-//        binding.shimmerViewContainer.startShimmer()
-//    }
-//
-//    override fun onPause() {
-//        binding.shimmerViewContainer.stopShimmer()
-//        super.onPause()
-//    }
+
 }

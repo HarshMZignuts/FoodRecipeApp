@@ -4,6 +4,7 @@ import android.app.Application
 import android.os.Build
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -25,24 +26,30 @@ constructor(
     private val repository: Repository,
     application: Application
 ) : BaseViewModel(application) {
-    val myResponce2: MutableLiveData<NetworkResult<Detail>> = MutableLiveData()
-    val mycarbs: MutableLiveData<NutrientX> = MutableLiveData()
+    private val _myResponceData = MutableLiveData<NetworkResult<Detail>>()
+    val myResponceData: LiveData<NetworkResult<Detail>>
+        get() = _myResponceData
+
     private val mContext = application
 
-    //    val fat : MutableLiveData<NutrientX> = MutableLiveData()
-//    var f1 by Delegates.notNull<Double>()
+
+    private var vid = -1
+
     @RequiresApi(Build.VERSION_CODES.M)
     fun getRecipe2(id: Int) {
-
+        if (vid == id) {
+            return
+        } else {
+            vid = id
+        }
         viewModelScope.launch {
 
             if (isConnected()) {
 
 
-                    myResponce2.value = NetworkResult.Loading()
-                val response2: Response<Detail> = repository.getSingleRecipe(id)
-                    myResponce2.value = handleResponse(response2)
-
+                _myResponceData.value = NetworkResult.Loading()
+                val response: Response<Detail> = repository.getSingleRecipe(id)
+                _myResponceData.value = handleResponse(response)
 
 
             } else {
@@ -50,8 +57,6 @@ constructor(
             }
 
 
-//            if(mycarbs.value?.name == "Fat") {
-//                f1 = mycarbs!!.value!!.amount!!
         }
     }
 
