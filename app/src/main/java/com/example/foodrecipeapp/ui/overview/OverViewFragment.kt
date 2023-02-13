@@ -3,34 +3,33 @@ package com.example.foodrecipeapp.ui.overview
 import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
-import android.transition.TransitionInflater
+
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+
 import androidx.annotation.RequiresApi
 
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
 
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.Transformations
+
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.foodrecipeapp.R
-import com.example.foodrecipeapp.databinding.FragmentDetailBinding
+
 
 import com.example.foodrecipeapp.databinding.FragmentOverViewBinding
 import com.example.foodrecipeapp.util.NetworkResult
-import com.example.foodrecipeapp.util.Recipe
+
 import com.example.foodrecipeapp.util.snackBar
 
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import java.util.*
-import kotlin.collections.ArrayList
+
 
 @AndroidEntryPoint
 class OverViewFragment : Fragment() {
